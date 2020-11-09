@@ -1,6 +1,19 @@
 <?php
 require('connection.php');
 require('functions.php');
+session_start();
+if(isset($_SESSION['ADMIN_LOGIN']) && $_SESSION['ADMIN_LOGIN']!=''){
+
+}else{
+	header('location:login.php');
+	die();
+}
+if(time()-$_SESSION["login_time_stamp"] >3600)   
+    { 
+        session_unset(); 
+        session_destroy(); 
+        header("location:login.php"); 
+    } 
 ?>
 
 <html class="no-js" lang="">
@@ -11,7 +24,6 @@ require('functions.php');
        <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="img/favicon.png" type="image/gif" sizes="16x16">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -35,7 +47,7 @@ require('functions.php');
    <body>
      
          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#"><img src="images/logo4.png" height="50px" width="120px"></a>
+  <a class="navbar-brand" href="#">Gift_A_Grin</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -44,16 +56,21 @@ require('functions.php');
       <li class="nav-item active">
         <a class="nav-link" href="categories.php">Categories<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="product.php">Product</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="order.php">Order</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="users.php">Users</a>
       </li>
-      
+      <li class="nav-item active">
+        <a class="nav-link " href="contact_us.php">Contact Us</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="logout.php">Logout</a>
+      </li>
     </ul>
   </div>
 </nav>
